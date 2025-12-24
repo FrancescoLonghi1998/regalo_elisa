@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui c'è un regalo per una super tippi 🎁</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* NEVE */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* PACCO */
+#gift {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#gift img {
+  width: 220px;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* MESSAGGIO SEGRETO */
+#secret {
+  display: none;
+  padding: 40px 20px;
+  animation: fadeIn 1s forwards;
+}
+
+button {
+  background: #ef4444;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* CONTENUTO */
+#content {
+  display: none;
+  padding: 20px;
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+video {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform .3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<audio id="sound" src="open.mp3"></audio>
+
+<div id="gift">
+  <img src="https://i.imgur.com/9Rj9ZQK.png" alt="Apri il regalo">
+</div>
+
+<div id="secret">
+  <h1>💌 Il regalo siamo noi!!</h1>
+  <p>Non ti basta? Siamo simpatici..<br>
+     Vabbè dai..</p>
+  <button onclick="showContent()">Apri 🎁</button>
+</div>
+
+<div id="content">
+  <h1>🎄 Buon Natale ❤️</h1>
+  <p>Daniela, Demy, Fra<p>
+
+  <video controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <div class="gallery">
+    <img src="img/1.jpeg"><img src="img/2.jpeg"><img src="img/3.jpeg">
+    <img src="img/4.jpeg"><img src="img/5.jpeg"><img src="img/6.jpeg">
+  </div>
+</div>
+
+<script>
+// NEVE
+for (let i = 0; i < 40; i++) {
+  let snow = document.createElement("div");
+  snow.className = "snow";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.animationDuration = (5 + Math.random() * 5) + "s";
+  snow.style.opacity = Math.random();
+  snow.innerHTML = "❄";
+  document.body.appendChild(snow);
+}
+
+// APERTURA REGALO
+document.getElementById("gift").onclick = () => {
+  document.getElementById("sound").play();
+  document.getElementById("gift").style.display = "none";
+  document.getElementById("secret").style.display = "block";
+}
+
+function showContent() {
+  document.getElementById("secret").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+</script>
+
+</body>
+</html>
